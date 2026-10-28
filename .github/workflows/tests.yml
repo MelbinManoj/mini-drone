@@ -1,0 +1,14 @@
+name: tests
+
+on: [push, pull_request]
+
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build and run logic tests
+        run: |
+          cd test
+          g++ -std=c++11 -Wall -Wextra -I../mini_drone test_flight_controller.cpp -o test
+          ./test
